@@ -13,7 +13,6 @@ import com.example.headtohead.question.GameCollections;
 import com.example.headtohead.question.TFquestion;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -36,7 +35,7 @@ public class GameActivityTF extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_game_tf);
         fBmodule = new FBmodule(this);
         TvQuestion = findViewById(R.id.TvQuestion);
-        fBmodule.SetPlayers(this);
+        fBmodule.TFSetPlayers(this);
         collections = new GameCollections();
         tFCollection = collections.getTFCollection();
         btnTrue = findViewById(R.id.btnTRUE);
@@ -65,7 +64,7 @@ public class GameActivityTF extends AppCompatActivity implements View.OnClickLis
                 GetANewRandomQuestionForP2();
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TFGameControl/CurrentQuestion");
                 reference.setValue(CurrentQuestion.getQuestion());//מעלה את השאלה לfb
-                fBmodule.SetQuestion(this);
+                fBmodule.TFSetQuestion(this);
                 TvQuestion.setText("Waiting...");
 
 
@@ -73,7 +72,7 @@ public class GameActivityTF extends AppCompatActivity implements View.OnClickLis
             if (player == 1) {
                 if (turn == 1)
                     TvQuestion.setText("Waiting for players...");
-                fBmodule.SetQuestion(this);
+                fBmodule.TFSetQuestion(this);
             }
 
         }
@@ -97,7 +96,7 @@ public class GameActivityTF extends AppCompatActivity implements View.OnClickLis
                                 public void run() {
                                     btnFalse.setEnabled(false);
                                     btnTrue.setEnabled(false);
-                                    fBmodule.SetWhoWasCorrect(GameActivityTF.this);
+                                    fBmodule.TFSetWhoWasCorrect(GameActivityTF.this);
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
@@ -138,7 +137,7 @@ public class GameActivityTF extends AppCompatActivity implements View.OnClickLis
                         public void run() {
                             btnFalse.setEnabled(false);
                             btnTrue.setEnabled(false);
-                            fBmodule.SetWhoWasCorrect(GameActivityTF.this);
+                            fBmodule.TFSetWhoWasCorrect(GameActivityTF.this);
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -187,7 +186,7 @@ public class GameActivityTF extends AppCompatActivity implements View.OnClickLis
                                     public void run() {
                                         btnFalse.setEnabled(false);
                                         btnTrue.setEnabled(false);
-                                        fBmodule.SetWhoWasCorrect(GameActivityTF.this);
+                                        fBmodule.TFSetWhoWasCorrect(GameActivityTF.this);
                                         handler.postDelayed(new Runnable() {
                                             @Override
                                             public void run() {
@@ -232,7 +231,7 @@ public class GameActivityTF extends AppCompatActivity implements View.OnClickLis
                             public void run() {
                                 btnFalse.setEnabled(false);
                                 btnTrue.setEnabled(false);
-                                fBmodule.SetWhoWasCorrect(GameActivityTF.this);
+                                fBmodule.TFSetWhoWasCorrect(GameActivityTF.this);
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {

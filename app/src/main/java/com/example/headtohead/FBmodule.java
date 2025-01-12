@@ -31,7 +31,7 @@ public class FBmodule {
 
     }
 
-    public void SetPlayers(GameActivityTF gameActivityTF) {
+    public void TFSetPlayers(GameActivityTF gameActivityTF) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TFGameControl/playerswaiting");
 
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -57,7 +57,7 @@ public class FBmodule {
         });
 
     }
-    public void SetQuestion(GameActivityTF gameActivityTF){
+    public void TFSetQuestion(GameActivityTF gameActivityTF){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TFGameControl/CurrentQuestion");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -71,10 +71,10 @@ public class FBmodule {
             }
         });
     }
-    public void SetWhoWasCorrect(GameActivityTF gameActivityTF){
+    public void TFSetWhoWasCorrect(GameActivityTF gameActivityTF){
         DatabaseReference referencep1 = firebaseDatabase.getReference("TFGameControl/answerStatus/p1");
         DatabaseReference referencep2 = firebaseDatabase.getReference("TFGameControl/answerStatus/p2");
-        referencep1.addListenerForSingleValueEvent(new ValueEventListener() {
+        referencep1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
             if(snapshot.getValue()!=null) {
